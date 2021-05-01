@@ -26,7 +26,7 @@ function sydsTextCensorer(wordToCensor, replaceWordWith, textToBeCensored){
   keepCensoringText = 1
   while (keepCensoringText){
     censoredText = textToBeCensored.replace(wordToCensor,replaceWordWith)
-    //If no text was censord then exit loop
+    //If no text was censored then exit loop
     if (censoredText !== textToBeCensored){ 
       censoredWordsTally++
       textToBeCensored = censoredText}
