@@ -19,7 +19,9 @@ let uncensoredText =
    one two three four five six seven eight nine ten\n \
    one two three four five six seven eight nine ten\n \
    one two three four five six seven eight nine ten\n "
+
 /*
+///////////////////////////////////////////////////////////////////////
 // I wanted to make the censor function useable without any global variables
 // Also I wanted to keep all the internal workings private so no global variables are used
 function sydsTextCensorer(wordToCensor, replaceWordWith, textToBeCensored){
@@ -60,14 +62,12 @@ else
   // Display the resulting censor
 alert(`Here is the censored text.\n\n    ${result[1]}`)
 
-*/
 ///////////////////////////////////////////////////////////////////////
-
+*/
 
 
 // Spoke to Nico...He suggests doing it without using .replace() property method
 // So... Here we go
-
 
 function sydsTextCensorer(wordToCensor, replaceWordWith, textToBeCensored){
   let censoredText = ""
@@ -76,6 +76,8 @@ function sydsTextCensorer(wordToCensor, replaceWordWith, textToBeCensored){
  
   // Lets detect every word and check it against the censored word
   for (i = 0 ; i < textToBeCensored.length; i++)
+  
+  // if (textToBeCensored[i]>'a' && textToBeCensored[i]<'z' || textToBeCensored[i]>'A' && textToBeCensored[i]<'Z')
   // If a space is not seen then we continue to built a word 
   if (textToBeCensored[i]!==" " )
     word+=textToBeCensored[i]
@@ -107,6 +109,6 @@ if (result[0]===0)
 else
   alert(`I replaced the word "${textToCensor}" ${result[0]} times with ${replacementText}`)
 
-  // Display the resulting censor
+// Display the resulting censored text
 alert(`Here is the censored text.\n\n    ${result[1]}`)
 
