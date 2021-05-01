@@ -20,33 +20,41 @@ let uncensoredText =
    one two three four five six seven eight nine ten\n \
    one two three four five six seven eight nine ten\n "
 
-
+// I wanted to make the censor function useable without any global variables
+// Also I wanted to keep all the internal workings private so no global variables are used
 function sydsTextCensorer(wordToCensor, replaceWordWith, textToBeCensored){
   let censoredText = ""
   let censoredWordsTally = 0
   keepCensoringText = 1
   while (keepCensoringText){   
+
     // Censor the text
     censoredText = textToBeCensored.replace(wordToCensor,replaceWordWith)
-    //If the censored text is different to the uncensored text then there is more text to censor
+
+    // If the censored text is different to the uncensored text then there is more text to censor
+    // Else STOP censoring text
     if (censoredText !== textToBeCensored){ 
       censoredWordsTally++
       textToBeCensored = censoredText}
     else 
       keepCensoringText = 0
   }
+  // I dont want to use global variables, so I'll return an array.
   return [censoredWordsTally,censoredText]
 }
 
 // Get some input
-let textToCensor = prompt(`What word shall I censor?`)  
+let textToCensor = prompt(`    ${uncensoredText}\n\nWhich number shall I censor?`)  
 let replacementText = prompt(`What shall I replace ${textToCensor} with?`)
 
 // Do the censoring
 let result = sydsTextCensorer(textToCensor, replacementText, uncensoredText)
 
 // Show what we replaced and how many times
-alert(`I replaced the word "${textToCensor}" ${result[0]} times`)
+if (result[0]===0)
+  alert(`${textToCensor} was not found in the text`)
+else
+  alert(`I replaced the word "${textToCensor}" ${result[0]} times with ${replacementText}`)
 
-// Display the resulting censor
-alert('Here is the censored text.\n\n  '+ result[1])
+  // Display the resulting censor
+alert(`Here is the censored text.\n\n    ${result[1]}`)
