@@ -20,13 +20,15 @@ let uncensoredText =
    one two three four five six seven eight nine ten\n \
    one two three four five six seven eight nine ten\n "
 
+
 function sydsTextCensorer(wordToCensor, replaceWordWith, textToBeCensored){
   let censoredText = ""
   let censoredWordsTally = 0
   keepCensoringText = 1
-  while (keepCensoringText){
+  while (keepCensoringText){   
+    // Censor the text
     censoredText = textToBeCensored.replace(wordToCensor,replaceWordWith)
-    //If no text was censored then exit loop
+    //If the censored text is different to the uncensored text then there is more text to censor
     if (censoredText !== textToBeCensored){ 
       censoredWordsTally++
       textToBeCensored = censoredText}
@@ -36,9 +38,15 @@ function sydsTextCensorer(wordToCensor, replaceWordWith, textToBeCensored){
   return [censoredWordsTally,censoredText]
 }
 
+// Get some input
 let textToCensor = prompt(`What word shall I censor?`)  
 let replacementText = prompt(`What shall I replace ${textToCensor} with?`)
 
+// Do the censoring
 let result = sydsTextCensorer(textToCensor, replacementText, uncensoredText)
+
+// Show what we replaced and how many times
 alert(`I replaced the word "${textToCensor}" ${result[0]} times`)
+
+// Display the resulting censor
 alert('Here is the censored text.\n\n  '+ result[1])
