@@ -74,11 +74,10 @@ function sydsTextCensorer(wordToCensor, replaceWordWith, textToBeCensored){
   let censoredWordsTally = 0
   let word = ""
  
-  // Lets detect every word and check it against the censored word
+  // Lets check every charactor and start building words to check censoring
   for (i = 0 ; i < textToBeCensored.length; i++)
   
-  // if (textToBeCensored[i]>'a' && textToBeCensored[i]<'z' || textToBeCensored[i]>'A' && textToBeCensored[i]<'Z')
-  // If a space is not seen then we continue to built a word 
+  // Lets check every charactor so we can build words to be censored
   if (textToBeCensored[i]!==" " )
     word+=textToBeCensored[i]
   // We have seen a space so lets check if our word should be censored  
@@ -112,3 +111,5 @@ else
 // Display the resulting censored text
 alert(`Here is the censored text.\n\n    ${result[1]}`)
 
+// Will try the below but I have to check for new lines to retain paragraph format
+// if (textToBeCensored[i]>'a' && textToBeCensored[i]<'z' || textToBeCensored[i]>'A' && textToBeCensored[i]<'Z')
