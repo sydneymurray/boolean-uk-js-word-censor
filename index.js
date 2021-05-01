@@ -19,13 +19,14 @@ let uncensoredText =
    one two three four five six seven eight nine ten\n \
    one two three four five six seven eight nine ten\n \
    one two three four five six seven eight nine ten\n "
-
+/*
 // I wanted to make the censor function useable without any global variables
 // Also I wanted to keep all the internal workings private so no global variables are used
 function sydsTextCensorer(wordToCensor, replaceWordWith, textToBeCensored){
   let censoredText = ""
   let censoredWordsTally = 0
   keepCensoringText = 1
+ 
   while (keepCensoringText){   
 
     // Censor the text
@@ -58,3 +59,54 @@ else
 
   // Display the resulting censor
 alert(`Here is the censored text.\n\n    ${result[1]}`)
+
+*/
+///////////////////////////////////////////////////////////////////////
+
+
+
+// Spoke to Nico...He suggests doing it without using .replace() property method
+// So... Here we go
+
+
+function sydsTextCensorer(wordToCensor, replaceWordWith, textToBeCensored){
+  let censoredText = ""
+  let censoredWordsTally = 0
+  let word = ""
+ 
+  // Lets detect every word and check it against the censored word
+  for (i = 0 ; i < textToBeCensored.length; i++)
+  // If a space is not seen then we continue to built a word 
+  if (textToBeCensored[i]!==" " )
+    word+=textToBeCensored[i]
+  // We have seen a space so lets check if our word should be censored  
+  else if (word===wordToCensor){
+    // The word we have seen matches our censor so we replace it 
+    censoredText += replaceWordWith + " "
+    censoredWordsTally++ 
+    word = "" }
+  else {
+    // The word we have seen is OK so we add it to censored text
+    censoredText += word + " " 
+    word = ""}
+
+  // I dont want to use global variables, so I'll return an array.
+  return [censoredWordsTally,censoredText]
+}
+
+// Get some input
+let textToCensor = prompt(`    ${uncensoredText}\n\nWhich number shall I censor?`)  
+let replacementText = prompt(`What shall I replace ${textToCensor} with?`)
+
+// Do the censoring
+let result = sydsTextCensorer(textToCensor, replacementText, uncensoredText)
+
+// Show what we replaced and how many times
+if (result[0]===0)
+  alert(`${textToCensor} was not found in the text`)
+else
+  alert(`I replaced the word "${textToCensor}" ${result[0]} times with ${replacementText}`)
+
+  // Display the resulting censor
+alert(`Here is the censored text.\n\n    ${result[1]}`)
+
