@@ -76,21 +76,18 @@ function sydsTextCensorer(wordToCensor, replaceWordWith, textToBeCensored){
  
   // Lets check every charactor and start building words to check censoring
   for (i = 0 ; i < textToBeCensored.length; i++)
-  
-  // Lets check every charactor so we can build words to be censored
-  if (textToBeCensored[i]!==" " )
-    word+=textToBeCensored[i]
-  // We have seen a space so lets check if our word should be censored  
-  else if (word===wordToCensor){
-    // The word we have seen matches our censor so we replace it 
-    censoredText += replaceWordWith + " "
-    censoredWordsTally++ 
-    word = "" }
-  else {
+    if (textToBeCensored[i]!==" " )
+      word+=textToBeCensored[i]
+    // We have seen a space so lets check if our word should be censored  
+    else if (word===wordToCensor){
+      // The word we have seen matches our censor so we replace it 
+      censoredText += replaceWordWith + " "
+      censoredWordsTally++ 
+      word = "" }
+    else {
     // The word we have seen is OK so we add it to censored text
     censoredText += word + " " 
     word = ""}
-
   // I dont want to use global variables, so I'll return an array.
   return [censoredWordsTally,censoredText]
 }
@@ -111,5 +108,7 @@ else
 // Display the resulting censored text
 alert(`Here is the censored text.\n\n    ${result[1]}`)
 
+// Now I'm happy with this as I have built my own word censoring engine
+// Ending up being much easier than I thought it would be, should have done this way in the first place
 // Will try the below but I have to check for new lines to retain paragraph format
 // if (textToBeCensored[i]>'a' && textToBeCensored[i]<'z' || textToBeCensored[i]>'A' && textToBeCensored[i]<'Z')
